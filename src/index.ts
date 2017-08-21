@@ -1,4 +1,4 @@
-import { spawn } from 'child_process';
+import { spawn, SpawnOptions } from 'child_process';
 import { Observer } from 'rxjs/Observer';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -11,10 +11,10 @@ export interface ChildProcess$ {
 	stdErr$?: Observable<Buffer>;
 }
 
-export function SpawnChildRx( command, args?, options? ): ChildProcess${
+export function rxjsSpawn( command: string, args?: string[], options?: SpawnOptions ): ChildProcess${
 	let stdio: [string, string, string] | string;
-	if( args && args.stdio ) {
-		stdio = args.stdio;
+	if( options && options.stdio ) {
+		stdio = options.stdio;
 	}else{
 		// if stdio is not set, use the default
 		stdio = 'pipe';
