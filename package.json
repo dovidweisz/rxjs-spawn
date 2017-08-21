@@ -17,6 +17,7 @@
     "rxjs": "^5.0.0"
   },
   "devDependencies": {
+    "@types/node": "^8.0.24",
     "rxjs": "^5.4.3",
     "typescript": "^2.4.2"
   }
