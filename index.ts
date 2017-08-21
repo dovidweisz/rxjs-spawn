@@ -43,7 +43,7 @@ export function SpawnChildRx( command, args?, options? ): ChildProcess${
 		rv.stdOut$ = onStdOut('data');*/
 		const stdOutSubject: Subject<Buffer> = new Subject;
 		_childProcess.stdout.on('data', data => stdOutSubject.next(data as Buffer));
-		rv.stdOut$ = stdOutSubject;
+		rv.stdOut$ = stdOutSubject.asObservable();
 	}
 
 	if(stderr){
@@ -51,7 +51,7 @@ export function SpawnChildRx( command, args?, options? ): ChildProcess${
 		rv.stdErr$ = onStdErr('data');*/
 		const stdErrSubject: Subject<Buffer> = new Subject;
 		_childProcess.stderr.on('data', data => stdErrSubject.next(data as Buffer));
-		rv.stdErr$ = stdErrSubject;
+		rv.stdErr$ = stdErrSubject.asObservable();
 	}
 
     return rv;
