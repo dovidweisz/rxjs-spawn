@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "sourceMap": true,          // allow sourcemap support
+    "strictNullChecks": true,   // enable strict null checks as a best practice
+    "module": "es6",            // specifiy module code generation
+    "outDir": ".dist/",
+    "target": "es2016",            // specify ECMAScript target version
+    "paths": {
+      "*": [
+        "node_modules/*"
+      ]
+    }
+  },
+  "include": [
+    "./src/*.ts"
+  ]
+}

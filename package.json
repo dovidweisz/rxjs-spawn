@@ -1,0 +1,23 @@
+{
+  "name": "rxjs-spawn",
+  "version": "1.0.0",
+  "description": "Node child process with observables",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "keywords": [
+    "rxjs",
+    "spawn",
+    "child_process"
+  ],
+  "author": "Dovid Weisz",
+  "license": "ISC",
+  "peerDependencies": {
+    "rxjs": "^5.0.0"
+  },
+  "devDependencies": {
+    "rxjs": "^5.4.3",
+    "typescript": "^2.4.2"
+  }
+}
