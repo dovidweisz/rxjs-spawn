@@ -30,8 +30,8 @@ export function SpawnChildRx( command, args?, options? ): ChildProcess${
 
     if(stdin){
     	rv.stdIn = {
-			next: function(){
-
+			next: function(cmd){
+				_childProcess.stdin.write(`${cmd}\n`);
 			},
 			error: (err: any) => {},
 			complete: () => {},
