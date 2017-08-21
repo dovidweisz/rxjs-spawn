@@ -6,30 +6,30 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/observable/bindNodeCallback';
 
 export interface ChildProcess$ {
-    stdIn? : Observer<string>;
-    stdOut$?: Observable<Buffer>;
-    stdErr$?: Observable<Buffer>;
+	stdIn? : Observer<string>;
+	stdOut$?: Observable<Buffer>;
+	stdErr$?: Observable<Buffer>;
 }
 
 export function SpawnChildRx( command, args?, options? ): ChildProcess${
-    let stdio: [string, string, string] | string;
-    if( args && args.stdio ) {
-        stdio = args.stdio;
-    }else{
-        // if stdio is not set, use the default
-        stdio = 'pipe';
-    }
-    if( typeof stdio === 'string' ){
-        stdio = [stdio as string, stdio as string, stdio as string];
-    }
-    const [ stdin, stdout, stderr ] = stdio.map( opt => opt === 'pipe');
+	let stdio: [string, string, string] | string;
+	if( args && args.stdio ) {
+		stdio = args.stdio;
+	}else{
+		// if stdio is not set, use the default
+		stdio = 'pipe';
+	}
+	if( typeof stdio === 'string' ){
+		stdio = [stdio as string, stdio as string, stdio as string];
+	}
+	const [ stdin, stdout, stderr ] = stdio.map( opt => opt === 'pipe');
 
-    const rv: ChildProcess$ = {};
+	const rv: ChildProcess$ = {};
 
-    const _childProcess = spawn(command, args, options);
+	const _childProcess = spawn(command, args, options);
 
-    if(stdin){
-    	rv.stdIn = {
+	if(stdin){
+		rv.stdIn = {
 			next: function(cmd){
 				_childProcess.stdin.write(`${cmd}\n`);
 			},
@@ -54,5 +54,5 @@ export function SpawnChildRx( command, args?, options? ): ChildProcess${
 		rv.stdErr$ = stdErrSubject.asObservable();
 	}
 
-    return rv;
+	return rv;
 }
