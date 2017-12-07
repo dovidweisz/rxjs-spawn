@@ -34,7 +34,9 @@ export function rxjsSpawn( command: string, args?: string[], options?: SpawnOpti
 				_childProcess.stdin.write(`${cmd}\n`);
 			},
 			error: (err: any) => {},
-			complete: () => {},
+			complete: () => {
+				_childProcess.stdin.end();
+			},
 		}
 	}
 
